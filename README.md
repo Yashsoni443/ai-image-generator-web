@@ -1,7 +1,7 @@
 # ShowImageWeb - AI 图像生成器
 
 基于 Cloudflare Pages Functions 的 AI 图像生成 Web 应用。
-
+2025-12-04 添加支持 https://ai.gitee.com/ Z-Image-Turbo API 每日免费体验 100 张
 ## 项目结构
 
 ```
